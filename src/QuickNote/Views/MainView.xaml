@@ -1,0 +1,256 @@
+﻿<Window x:Class="SwissTool.Ext.QuickNote.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:managers="clr-namespace:SwissTool.Framework.UI.Managers;assembly=SwissTool.Framework.UI"
+        xmlns:controls1="clr-namespace:SwissTool.Ext.QuickNote.Controls"
+        xmlns:views="clr-namespace:SwissTool.Ext.QuickNote.Views"
+        mc:Ignorable="d" 
+        Height="235" 
+        Width="512" 
+        Title="QuickNote" 
+        ShowInTaskbar="False" 
+        Topmost="True" 
+        BorderThickness="0"
+        WindowStyle="None" 
+        ResizeMode="CanResizeWithGrip" 
+        AllowsTransparency="True"
+        WindowStartupLocation="Manual" 
+        Background="Transparent"
+        Opacity="{Binding Path=WindowOpacity, Mode=OneWay}" 
+        PreviewKeyDown="PreviewWindowKeyDown"
+        PreviewMouseWheel="PreviewWindowMouseWheel" 
+        PreviewMouseLeftButtonDown="PreviewWindowMouseLeftButtonDown" 
+        PreviewMouseLeftButtonUp="PreviewWindowMouseLeftButtonUp"
+        PreviewMouseMove="PreviewWindowMouseMove"
+        SizeChanged="WindowSizeChanged" Deactivated="MainView_OnDeactivated" 
+        Left="{Binding WindowPositionX, Mode=TwoWay}"
+        Top="{Binding WindowPositionY, Mode=TwoWay}">
+    <Window.InputBindings>
+        <KeyBinding Key="F3" Command="ApplicationCommands.Find"></KeyBinding>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Find" Executed="OnFindCommandExecuted" />
+    </Window.CommandBindings>
+    <Window.Resources>
+
+        <BitmapImage x:Key="IconDisk" UriSource="../Resources/Icons/Light/24x24/save.png" />
+        <BitmapImage x:Key="IconSearch" UriSource="../Resources/Icons/Light/24x24/search.png" />
+
+        <BitmapImage x:Key="IconDiskDark" UriSource="../Resources/Icons/Dark/24x24/save.png" />
+        <BitmapImage x:Key="IconSearchDark" UriSource="../Resources/Icons/Dark/24x24/search.png" />
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="Padding" Value="4"></Setter>
+            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+        
+        <Style TargetType="{x:Type controls1:CustomTabControl}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <EventSetter Event="SelectionChanged" Handler="EventSetter_OnHandler"></EventSetter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type controls1:CustomTabControl}">
+                        <Grid KeyboardNavigation.TabNavigation="Local">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TabPanel Name="HeaderPanel" Grid.Row="0" Panel.ZIndex="1" Margin="2,2,4,0" IsItemsHost="True" KeyboardNavigation.TabIndex="1" Background="Transparent" />
+                            <Border Name="Border" Grid.Row="1" Background="{DynamicResource WhiteColorBrush}" 
+                                BorderBrush="Gray" BorderThickness="1" CornerRadius="0" 
+                                KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained"
+                                KeyboardNavigation.TabIndex="2">
+                                <ContentPresenter Name="PART_SelectedContentHost" Margin="4" ContentSource="SelectedContent" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TabButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border" 
+                            BorderThickness="1"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource BlackColorBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Storyboard x:Key="NoSearchMatchesStoryboard">
+       
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="SearchTextBox" Duration="0:0:0.3"
+                      Storyboard.TargetProperty="Background.Color" AutoReverse="True">
+                <DiscreteColorKeyFrame KeyTime="0:0:0" Value="{DynamicResource WhiteColor}" />
+                <LinearColorKeyFrame KeyTime="0:0:0.1" Value="#ee4037" />
+                <DiscreteColorKeyFrame KeyTime="0:0:0.3" Value="#ee4037" />
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <DataTemplate x:Key="ClosableTabItemTemplate">
+            <DockPanel MinWidth="75" Focusable="False" Height="22" Background="Transparent">
+                <Image Width="18" Height="18" Margin="-3,0,0,0" DockPanel.Dock="Left" Visibility="{Binding IsPhysical, Converter={StaticResource BoolToVisibilityConverter}}" ToolTip="Physical file">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="{StaticResource IconDisk}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static managers:WindowManager.CurrentTheme}, Path=UiHint}" Value="Dark">
+                                    <Setter Property="Source" Value="{StaticResource IconDiskDark}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Button Style="{StaticResource TabButtonStyle}" Command="{Binding Path=CloseWorkspaceCommand}" CommandParameter="{Binding Path=.}" DockPanel.Dock="Right" Width="15" Height="15" Margin="0 0 -3 0" Focusable="False"
+                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Visibility="{Binding Path=IsCloseButtonVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                    <Image Source="../Images/Window-Close.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="12" Height="12" Focusable="False" />
+                </Button>
+                <controls1:EditableTextBlock Margin="2,1,0,0" Text="{Binding Path=Label, UpdateSourceTrigger=LostFocus}" Name="LabelTextBox" ToolTip="{Binding Filename}" />
+                <TextBlock Margin="3,0,3,0" Visibility="{Binding HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{DynamicResource BlackColorBrush}">*</TextBlock>
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ContentTemplate">
+            <views:WorkspaceView x:Name="WorkspaceArea" />
+        </DataTemplate>
+
+        <ControlTemplate x:Key="TextBoxControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" x:Name="Bd" BorderThickness="0">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            
+        </ControlTemplate>
+
+        <BitmapImage x:Key="IconRename" UriSource="../Resources/Icons/Light/24x24/rename.png" />
+        <BitmapImage x:Key="IconRenameDark" UriSource="../Resources/Icons/Dark/24x24/rename.png" />
+
+        <ContextMenu x:Key="TabItemContextMenu">
+            <MenuItem Header="Rename" InputGestureText="F2" Click="MenuItem_OnClick">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="{StaticResource IconRename}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static managers:WindowManager.CurrentTheme}, Path=UiHint}" Value="Dark">
+                                        <Setter Property="Source" Value="{StaticResource IconRenameDark}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+    </Window.Resources>
+    <DockPanel Name="MainPanel" Margin="0">
+        <!--<DockPanel Name="MainPanel" Margin="0,-30,0,0">-->
+        <Border Name="SearchBorder" DockPanel.Dock="Bottom" Background="{DynamicResource WhiteColorBrush}" Margin="0,4,0,0" BorderThickness="1" CornerRadius="0" HorizontalAlignment="Left" KeyDown="UIElement_OnKeyDown"
+                    IsVisibleChanged="UIElement_OnIsVisibleChanged" Visibility="Collapsed" BorderBrush="Gray"
+                    LostFocus="UIElement_OnLostFocus">
+                
+            <DockPanel LastChildFill="False">
+            <Grid DockPanel.Dock="Left">
+                <Grid Margin="2">
+                        <TextBox Name="SearchTextBox" Template="{StaticResource TextBoxControlTemplate}" Margin="0,0,0,0"  Width="140" Padding="20,1,2,2" HorizontalAlignment="Left" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" KeyDown="SearchTextBox_OnKeyDown">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Setters>
+                                        <Setter Property="Background" Value="{DynamicResource WhiteColorBrush}"></Setter>
+                                        <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}"></Setter>
+                                    </Style.Setters>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    <Image Height="12" Width="12" Margin="4,0,0,0" HorizontalAlignment="Left">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="{StaticResource IconSearch}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Source={x:Static managers:WindowManager.CurrentTheme}, Path=UiHint}" Value="Dark">
+                                            <Setter Property="Source" Value="{StaticResource IconSearchDark}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                </Grid>
+            </Grid>
+   
+            </DockPanel>
+        </Border>
+        <controls1:CustomTabControl x:Name="MainTabControl" Background="Transparent" Focusable="False" ItemsSource="{Binding Path=Workspaces}" 
+                                   ItemTemplate="{StaticResource ClosableTabItemTemplate}" 
+                                   ContentTemplate="{StaticResource ContentTemplate}" 
+                                   SelectedIndex="{Binding Path=CurrentWorkspaceIndex}"
+                                   AllowDrop="True" 
+                                   IsSynchronizedWithCurrentItem="True" 
+                                   Drop="TabControl_OnPreviewDrop" 
+                                   DragOver="MainTabControl_OnPreviewDragOver">
+            <controls1:CustomTabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Focusable" Value="False" />
+                    <EventSetter Event="PreviewMouseDown" Handler="PreviewTabItemMouseLeftButtonDown" />
+                    <EventSetter Event="PreviewDragOver" Handler="TabItemDragOver"/>
+                    <EventSetter Event="PreviewDrop" Handler="TabItemDrop"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid Background="{DynamicResource WhiteColorBrush}">
+                                    
+                                    <Border Name="Border" Margin="-2,0,0,0" Background="{DynamicResource WhiteColorBrush}" 
+                                            BorderBrush="Gray" BorderThickness="1,1,1,0" CornerRadius="0">
+                                        <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                          ContentSource="Header" Margin="12,2,12,2" RecognizesAccessKey="True" />
+                                    </Border>
+                                    
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Panel.ZIndex" Value="100" />
+                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                                        <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ContextMenu" Value="{StaticResource TabItemContextMenu}" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding MainViewModel.IsReordering}" Value="True" />
+                                <Condition Binding="{Binding IsInDragDropOperation}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" Value="0.5"></Setter>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </controls1:CustomTabControl.ItemContainerStyle>
+        </controls1:CustomTabControl>
+        
+    </DockPanel>
+    </Window>
+
+
+

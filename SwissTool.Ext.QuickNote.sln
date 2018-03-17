@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickNote", "src\QuickNote\QuickNote.csproj", "{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{011DDC4D-6010-465C-A771-40BF13F99EFB}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		QuickNote.vsmdi = QuickNote.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FFA6BAE4-9B0F-4A1C-A07F-5BB7E4B289EA}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5168AE3D-1645-4B49-8032-6C79AACF2101}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = QuickNote.vsmdi
+	EndGlobalSection
+EndGlobal
