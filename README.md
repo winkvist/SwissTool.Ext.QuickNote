@@ -1,8 +1,7 @@
 # QuickNote
 QuickNote offers swift handling of temporary notes
 
-QuickNote is part of the SwissTool component suite.
-See [SwissTool](https://github.com/winkvist/SwissTool) for more details.
+QuickNote is part of the [SwissTool](https://github.com/winkvist/SwissTool) component suite.
 
 #### Demo: 
 
