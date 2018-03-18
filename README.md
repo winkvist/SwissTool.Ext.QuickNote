@@ -6,7 +6,7 @@ See https://github.com/winkvist/SwissTool for more details.
 
 #### Demo: 
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=https://youtu.be/UcPVAllKLro" target="_blank"><img src="https://i.ytimg.com/vi/UcPVAllKLro/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAnXsBtwUEjaKsHwg3NTuEJzNKSZA" 
+<a href="https://youtu.be/UcPVAllKLro" target="_blank"><img src="https://i.ytimg.com/vi/UcPVAllKLro/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAnXsBtwUEjaKsHwg3NTuEJzNKSZA" 
 alt="Quick Note - Demo" width="240" height="180" border="10" /></a>
 
 #### Global hotkeys:
