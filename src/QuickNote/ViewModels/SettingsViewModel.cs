@@ -17,7 +17,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
 
     using SwissTool.Ext.QuickNote.Managers;
     using SwissTool.Ext.QuickNote.Models;
-    using SwissTool.Framework.UI.Commanding;
+    using SwissTool.Framework.Commanding;
     using SwissTool.Framework.UI.Infrastructure;
     using SwissTool.Framework.Utilities.Serialization;
 
