@@ -7,13 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using SwissTool.Framework.UI.Enums;
+using SwissTool.Framework.UI.Managers;
+
 namespace SwissTool.Ext.QuickNote.Controls
 {
     using System;
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
-
+    using System.Windows.Media;
     using ICSharpCode.AvalonEdit;
     using ICSharpCode.AvalonEdit.Editing;
 
@@ -74,6 +77,8 @@ namespace SwissTool.Ext.QuickNote.Controls
         /// </summary>
         public WorkspaceTextBox()
         {
+            this.TextArea.TextView.LinkTextForegroundBrush = (Brush)this.FindResource("AccentColorBrush");
+
             this.TextArea.SelectionChanged += this.TextAreaOnSelectionChanged;
             this.TextArea.Caret.PositionChanged += this.CaretPositionChanged;
             this.TextArea.DocumentChanged += this.TextAreaDocumentChanged;
