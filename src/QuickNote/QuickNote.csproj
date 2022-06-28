@@ -37,8 +37,8 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit, Version=6.0.1.278, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AvalonEdit.6.0.1\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.1.3.50, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AvalonEdit.6.1.3.50\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.1.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MahApps.Metro.1.6.1\lib\net45\MahApps.Metro.dll</HintPath>
@@ -200,12 +200,77 @@
     <Resource Include="Resources\Icons\Light\48x48\services.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\PlainTextHighlighting.xshd" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <EmbeddedResource Include="Resources\Highlighting\Light\AS3.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\ASPX.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Boo.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Coco-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\CPP-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\CSharp-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\CSS-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\DOSBATCH.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\FSharp-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\HLSL.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\HTML-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\INI.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Java-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\JavaScript-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Log.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\MarkDown-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Pascal.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Patch-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\PHP-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\PLSQL.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\PowerShell.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Python-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Ruby.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\scheme.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\squirrel.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Tex-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\TSQL-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\TXT.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\VB-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\vtl.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\XML-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\XmlDoc.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\AS3.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\ASPX.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Boo.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Coco-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\CPP-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\CSharp-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\CSS-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\DOSBATCH.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\FSharp-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\HLSL.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\HTML-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\INI.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Java-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\JavaScript-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Json.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Log.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\MarkDown-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Pascal.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Patch-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\PHP-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\PLSQL.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\PowerShell.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Python-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Ruby.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\scheme.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\squirrel.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\Tex-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\TSQL-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\TXT.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\VB-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\vtl.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\XML-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\XmlDoc.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Dark\None.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\Json.xshd" />
+    <EmbeddedResource Include="Resources\Highlighting\Light\None.xshd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

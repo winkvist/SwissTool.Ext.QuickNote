@@ -13,11 +13,6 @@ namespace SwissTool.Ext.QuickNote
     using System.Reflection;
     using System.Windows;
     using System.Windows.Media.Imaging;
-    using System.Xml;
-
-    using ICSharpCode.AvalonEdit.Highlighting;
-    using ICSharpCode.AvalonEdit.Highlighting.Xshd;
-
     using SwissTool.Ext.QuickNote.Managers;
     using SwissTool.Ext.QuickNote.Models;
     using SwissTool.Ext.QuickNote.ViewModels;
@@ -63,22 +58,6 @@ namespace SwissTool.Ext.QuickNote
 
             ApplicationManager.Setup(this, this.Settings);
 
-            IHighlightingDefinition customHighlighting;
-            using (var s = this.GetType().Assembly.GetManifestResourceStream("SwissTool.Ext.QuickNote.Controls.PlainTextHighlighting.xshd"))
-            {
-                if (s == null)
-                {
-                    throw new InvalidOperationException("Could not find embedded resource");
-                }
-
-                using (XmlReader reader = new XmlTextReader(s))
-                {
-                    customHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                }
-            }
-
-            HighlightingManager.Instance.RegisterHighlighting("Text", new string[] { }, customHighlighting);
-
             var viewModel = new MainViewModel();
             var view = new Views.MainView { DataContext = viewModel };
             viewModel.RequestHide += view.Hide;
@@ -97,7 +76,7 @@ namespace SwissTool.Ext.QuickNote
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show(string.Format("Unable to load the previous workspace states: {0}", ex.Message), "Loading failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show($"Unable to load the previous workspace states: {ex.Message}", "Loading failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }

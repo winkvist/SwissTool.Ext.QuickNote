@@ -71,7 +71,7 @@ namespace SwissTool.Ext.QuickNote.Models
         public WorkspaceState()
         {
             this.changeState = ChangeState.Unmodified;
-            this.SyntaxHighlightingDefinition = "Text";
+            this.SyntaxHighlightingDefinition = "None";
         }
 
         /// <summary>

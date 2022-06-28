@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!-- syntaxdefinition for TeX document 2001 by Mike Krueger (gleaned from Jedit) -->
+
+<SyntaxDefinition name = "TeX" extensions = ".tex" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+
+  <Color name="Digits"        foreground="#FFb5cea8" fontStyle="normal" fontWeight="normal"/>
+  <Color name="LineComment"   foreground="#FF57A64A" />
+
+  <Color name="Keywords"      foreground="#FF00A0FF" />
+  <Color name="ShortKeywords" foreground="#FFd8a0df" background="#10AAAAAA" fontWeight="normal" />
+
+  <Color name="Todo" foreground="#FFFF0000" fontWeight="bold"/>
+  <Color name="HACK" foreground="#FF8B008B" fontWeight="bold"/>
+
+  <Color name="CurlyBrackets"             foreground="White" fontWeight="normal" />
+
+  <Color name="SquareBrackets"            foreground="#FFffd68f"                        />
+  <Color name="ParameterInSquareBrackets" foreground="#FFD69D85" background="#11404040" />
+
+  <Color name="MathMode"  foreground="#FF3a6a9b" />
+  <Color name="MathMode1" foreground="#FF5a8abb" />
+
+  <RuleSet name="CommentMarkerSet">
+    <Keywords color="Todo">
+      <Word>TODO</Word>
+      <Word>FIXME</Word>
+    </Keywords>
+    <Keywords color="HACK">
+      <Word>HACK</Word>
+      <Word>UNDONE</Word>
+      <Word>Bug</Word>
+      <Word>Problem</Word>
+    </Keywords>
+  </RuleSet>
+
+  <!-- This is the main ruleset. -->
+  <RuleSet>
+    <Rule color="Digits">\d</Rule>
+
+    <!-- MathMode $ ... $ -->
+    <Span color="MathMode1" ruleSet="MathMode">
+      <Begin>\$</Begin>
+      <End>\$</End>
+    </Span>
+
+    <!-- MathMode \( ... \) -->
+    <Span color="MathMode1" ruleSet="MathMode">
+      <Begin>\\\(</Begin>
+      <End>\\\)</End>
+    </Span>
+
+    <!-- MathMode \[ ... \] -->
+    <Span color="MathMode1" ruleSet="MathMode">
+      <Begin>\\\[</Begin>
+      <End>\\\]</End>
+    </Span>
+
+    <!-- MathMode [ ... ] -->
+    <Span color="SquareBrackets" multiline="false">
+      <Begin>\[</Begin>
+      <End>\]</End>
+      <RuleSet>
+        <Rule color="ParameterInSquareBrackets">[^\\]</Rule>
+      </RuleSet>
+    </Span>
+
+    <!-- Mark '&','\\ ','\\', '\@', '\$', '\&', '\%', '\#', '\{', '\}', and '\/' etc as keyword -->
+    <Rule color="ShortKeywords">(&amp;)|(\\\ )|(\\\\)|(\\@)|(\\\$)|(\\&amp;)|(\\%)|(\\\#)|(\\{)|(\\})|(\\/)</Rule>
+
+    <Rule color="Keywords">(\\[\w]+)</Rule>
+
+    <Rule color="CurlyBrackets">({[\w]+.*})</Rule>
+
+    <Rule color="LineComment">(%)$</Rule>
+
+    <!-- This overwrites the rule for \% but it is still better than having '% \document' not being marked as comment
+         What is missing is a span rule that says something like match this only if it does not start with '\%' ???
+     -->
+    <Span color="LineComment" ruleSet="CommentMarkerSet">
+      <Begin>%</Begin>
+    </Span>
+
+    <Rule color="CurlyBrackets">({)|(})</Rule>
+
+    <!-- Rule foreground="Red">\\\%</Rule -->
+  </RuleSet>
+  
+  <RuleSet name = "MathMode" ignoreCase="false">
+    <!--Delimiters>&amp;~!@%^*()-+=|\#/{}[]:;"'&lt;&gt; , .?</Delimiters-->
+
+
+    <Span color = "LineComment" ><!--stopateol = "true"-->
+      <Begin>%</Begin>
+    </Span>
+
+    <!-- \... commands -->
+    <!--MarkFollowing markmarker ="true" bold = "true" italic = "false" color = "MidnightBlue">\</MarkFollowing-->
+
+    <Keywords color="Keywords">
+      <Word>)</Word>
+      <Word>)</Word>
+      <Word>{</Word>
+      <Word>}</Word>
+      <Word>[</Word>
+      <Word>]</Word>
+      <Word>=</Word>
+      <Word>!</Word>
+      <Word>+</Word>
+      <Word>-</Word>
+      <Word>/</Word>
+      <Word>*</Word>
+      <Word>&gt;</Word>
+      <Word>&lt;</Word>
+      <Word>&amp;</Word>
+      <Word>|</Word>
+      <Word>^</Word>
+      <Word>~</Word>
+      <Word>.</Word>
+      <Word>,</Word>
+      <Word>;</Word>
+      <Word>?</Word>
+      <Word>:</Word>
+      <Word>'</Word>
+      <!--			    <Key word = """ />-->
+      <Word>`</Word>
+    </Keywords>
+  </RuleSet>
+
+  <!-- Command Overview: http://www.math.sunysb.edu/~sorin/online-docs/latexhelp/ -->
+
+</SyntaxDefinition>
+

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="WorkspaceViewModel.cs" company="Fredrik Winkvist">
-//   Copyright © Winkvist.com. All rights reserved.
+//   Copyright © Fredrik Winkvist. All rights reserved.
 // </copyright>
 // <summary>
 //   The workspace view model.
@@ -70,11 +70,6 @@ namespace SwissTool.Ext.QuickNote.ViewModels
         /// The syntax highlight
         /// </summary>
         private IHighlightingDefinition syntaxHighlighting;
-
-        /// <summary>
-        /// The syntax highlighting definitions
-        /// </summary>
-        private IEnumerable<IHighlightingDefinition> syntaxHighlightingDefinitions;
 
         /// <summary>
         /// The document
@@ -151,41 +146,15 @@ namespace SwissTool.Ext.QuickNote.ViewModels
         /// <value>
         /// The syntax highlighting definitions.
         /// </value>
-        public IEnumerable<IHighlightingDefinition> SyntaxHighlightingDefinitions
-        {
-            get
-            {
-                if (this.syntaxHighlightingDefinitions == null)
-                {
-                    var list = new List<IHighlightingDefinition>(HighlightingManager.Instance.HighlightingDefinitions);
-                    var item = list.FirstOrDefault(l => l.Name == "Text");
-
-                    if (item != null)
-                    {
-                        list.Remove(item);
-                        list.Insert(0, item);
-                    }
-
-                    this.syntaxHighlightingDefinitions = list;
-                }
-
-                return this.syntaxHighlightingDefinitions;
-            }
-        }
-
+        public IEnumerable<IHighlightingDefinition> SyntaxHighlightingDefinitions => ApplicationManager.HighlightingManager.HighlightingDefinitions;
+        
         /// <summary>
         /// Gets a value indicating whether this instance is syntax highlighting enabled.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is syntax highlighting enabled; otherwise, <c>false</c>.
         /// </value>
-        public bool IsSyntaxHighlightingEnabled
-        {
-            get
-            {
-                return ApplicationManager.Settings.EnableSyntaxHighlighting;
-            }
-        }
+        public bool IsSyntaxHighlightingEnabled => ApplicationManager.Settings.EnableSyntaxHighlighting;
 
         /// <summary>
         /// Gets or sets the label.
@@ -645,7 +614,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             var workspaceStateFilePath = Path.Combine(ApplicationManager.Application.DataDirectory, "Workspaces", Path.GetRandomFileName());
                 
             this.WorkspaceState = new WorkspaceState(workspaceStateFilePath);
-            this.syntaxHighlighting = this.SyntaxHighlightingDefinitions.FirstOrDefault(l => l.Name == (this.WorkspaceState.SyntaxHighlightingDefinition ?? "Text"));
+            this.syntaxHighlighting = this.SyntaxHighlightingDefinitions.FirstOrDefault(l => l.Name == (this.WorkspaceState.SyntaxHighlightingDefinition ?? "None"));
 
             this.Label = string.Empty;
             this.SelectionStart = 0;
@@ -787,7 +756,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             this.Filename = filenameToLoad;
             this.Document.Text = fileContents;
 
-            var highlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(this.Filename));
+            var highlighting = ApplicationManager.HighlightingManager.GetDefinitionByExtension(Path.GetExtension(this.Filename));
             if (highlighting != null)
             {
                 this.SyntaxHighlighting = highlighting;

@@ -1,14 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="WorkspaceTextBox.cs" company="Fredrik Winkvist">
-//   Copyright © Winkvist.com. All rights reserved.
+//   Copyright © Fredrik Winkvist. All rights reserved.
 // </copyright>
 // <summary>
 //   Defines the WorkspaceTextBox type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using SwissTool.Framework.UI.Enums;
-using SwissTool.Framework.UI.Managers;
 
 namespace SwissTool.Ext.QuickNote.Controls
 {
