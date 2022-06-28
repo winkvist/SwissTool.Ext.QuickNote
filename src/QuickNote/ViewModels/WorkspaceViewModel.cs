@@ -721,7 +721,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             var saveFileDialog = new SaveFileDialog
                 {
                     DefaultExt = ".txt",
-                    Filter = "Text-Files (*.txt)|*.txt",
+                    Filter = "All Files (*.*)|*.*",
                     AddExtension = true,
                     OverwritePrompt = true
                 };
@@ -774,7 +774,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             var openFileDialog = new OpenFileDialog
                 {
                     DefaultExt = ".txt",
-                    Filter = "Text-Files (*.txt)|*.txt"
+                    Filter = "All Files (*.*)|*.*",
                 };
 
             var result = openFileDialog.ShowDialog();
@@ -793,7 +793,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             var openFileDialog = new OpenFileDialog
                 {
                     DefaultExt = ".txt",
-                    Filter = "Text-Files (*.txt)|*.txt"
+                    Filter = "All Files (*.*)|*.*",
                 };
 
             var result = openFileDialog.ShowDialog();
