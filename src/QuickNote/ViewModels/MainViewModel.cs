@@ -401,8 +401,8 @@ namespace SwissTool.Ext.QuickNote.ViewModels
 
             this.NotifyWorkspaceCollectionChanged();
 
-            // Goes to the previous workspace.
-            this.GoToPreviousWorkspace(currentIndex);
+            // Goes to the next workspace.
+            this.GoToNextWorkspace(currentIndex - 1);
         }
 
         /// <summary>
