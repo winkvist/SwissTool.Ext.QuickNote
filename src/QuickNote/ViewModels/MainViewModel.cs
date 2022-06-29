@@ -589,6 +589,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
                 this.saveTimer.Start();
             }
 
+            // TODO Refresh "ShowLineNumbers" in textarea
             this.CurrentWorkspace?.RefreshUI();
 
             if (ApplicationManager.Settings.WindowPositionX <= 0 && ApplicationManager.Settings.WindowPositionY <= 0)

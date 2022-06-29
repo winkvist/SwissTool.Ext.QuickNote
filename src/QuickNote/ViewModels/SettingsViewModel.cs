@@ -168,6 +168,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             ApplicationManager.Settings.EnableSyntaxHighlighting = this.SettingsCopy.EnableSyntaxHighlighting;
             ApplicationManager.Settings.WindowPositionX = this.SettingsCopy.WindowPositionX;
             ApplicationManager.Settings.WindowPositionY = this.SettingsCopy.WindowPositionY;
+            ApplicationManager.Settings.ShowLineNumbers = this.SettingsCopy.ShowLineNumbers;
 
             ApplicationManager.SaveSettings();
 

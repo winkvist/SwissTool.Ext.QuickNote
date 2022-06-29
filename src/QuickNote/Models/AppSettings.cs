@@ -29,6 +29,7 @@ namespace SwissTool.Ext.QuickNote.Models
             this.FontFamily = "Consolas";
             this.FontSize = 12;
             this.EnableSyntaxHighlighting = false;
+            this.ShowLineNumbers = false;
         }
 
         /// <summary>
@@ -100,5 +101,13 @@ namespace SwissTool.Ext.QuickNote.Models
         /// <c>true</c> if [enable syntax highlighting]; otherwise, <c>false</c>.
         /// </value>
         public bool EnableSyntaxHighlighting { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [show line numbers].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [show line numbers]; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowLineNumbers { get; set; }
     }
 }

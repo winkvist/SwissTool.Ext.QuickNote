@@ -30,7 +30,7 @@ namespace SwissTool.Ext.QuickNote.Controls
         /// <summary>
         /// The text box scroll viewer property
         /// </summary>
-        public static DependencyProperty TextBoxScrollViewerProperty = 
+        public static DependencyProperty TextBoxScrollViewerProperty =
             DependencyProperty.Register(
             "TextBoxScrollViewer", 
             typeof(ScrollViewer), 
@@ -63,6 +63,13 @@ namespace SwissTool.Ext.QuickNote.Controls
             typeof(int), 
             typeof(WorkspaceTextBox), 
             new PropertyMetadata(0, CaretOffsetChangedCallback));
+
+        public static DependencyProperty ShowLineNumbersProperty =
+            DependencyProperty.Register(
+                "ShowLineNumbers", 
+                typeof(bool), 
+                typeof(WorkspaceTextBox), 
+                new PropertyMetadata(false, ShowLineNumbersChangedCallback));
 
         /// <summary>
         /// Indicates whether the change came from the UI.
@@ -104,6 +111,15 @@ namespace SwissTool.Ext.QuickNote.Controls
             if (textBox != null)
             {
                 textBox.CaretOffset = (int)args.NewValue;
+            }
+        }
+        
+        private static void ShowLineNumbersChangedCallback(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var textBox = obj as WorkspaceTextBox;
+            if (textBox != null)
+            {
+                textBox.ShowLineNumbers = (bool)args.NewValue;
             }
         }
 

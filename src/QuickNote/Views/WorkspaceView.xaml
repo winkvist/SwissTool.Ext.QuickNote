@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:managers="clr-namespace:SwissTool.Framework.UI.Managers;assembly=SwissTool.Framework.UI"
              xmlns:controls="clr-namespace:SwissTool.Ext.QuickNote.Controls"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
              FocusManager.FocusedElement="{Binding ElementName=TextEditor}">
@@ -61,7 +62,48 @@
                                    Document="{Binding Document}"
                                    BindableSelectionStart="{Binding Path=SelectionStart, Mode=TwoWay}" 
                                    BindableSelectionLength="{Binding Path=SelectionLength, Mode=TwoWay}"
-                                   CaretOffset="{Binding CaretOffset, Mode=TwoWay}" >
+                                   CaretOffset="{Binding CaretOffset, Mode=TwoWay}" 
+                                   ShowLineNumbers="{Binding ShowLineNumbers}">
+            <controls:WorkspaceTextBox.Resources>
+                <Style TargetType="{x:Type avalonedit:TextArea}" x:Shared="False">
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="SelectionBrush">
+                        <Setter.Value>
+                            <SolidColorBrush
+                                Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}"
+                                Opacity="0.7"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="SelectionBorder">
+                        <Setter.Value>
+                            <Pen Brush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                 Thickness="1"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="SelectionForeground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type avalonedit:TextArea}">
+                                <DockPanel Focusable="False">
+                                    <ItemsControl Margin="0,0,8,0" DockPanel.Dock="Left"
+                                                  Focusable="False"
+                                                  ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=LeftMargins}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                    <ContentPresenter
+                                        Panel.ZIndex="-1"
+                                        Focusable="False"
+                                        Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextView}"/>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </controls:WorkspaceTextBox.Resources>
             <controls:WorkspaceTextBox.ContextMenu>
                 <ContextMenu>
                     

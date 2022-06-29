@@ -46,7 +46,7 @@
                 </StackPanel>
                 
             </TabItem>
-            <TabItem Header="Editor">
+            <TabItem Header="Text Editor">
                 <StackPanel Margin="5">
 
                     <GroupBox Header="Style" Margin="0" Padding="5">
@@ -92,8 +92,11 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
-                    <GroupBox Header="Syntax Highlighting" Margin="0,5,0,0" Padding="5">
-                        <CheckBox Content="Enable syntax highlighting" IsChecked="{Binding SettingsCopy.EnableSyntaxHighlighting}"></CheckBox>
+                    <GroupBox Header="Settings" Margin="0,5,0,0" Padding="5">
+                        <StackPanel>
+                            <CheckBox Margin="0,0,0,4" Content="Syntax highlighting" IsChecked="{Binding SettingsCopy.EnableSyntaxHighlighting}"></CheckBox>
+                            <CheckBox Content="Show line numbers" IsChecked="{Binding SettingsCopy.ShowLineNumbers}"></CheckBox>
+                        </StackPanel>
                     </GroupBox>
                 </StackPanel>
             </TabItem>

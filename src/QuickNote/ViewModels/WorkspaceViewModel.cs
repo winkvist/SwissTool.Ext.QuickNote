@@ -325,6 +325,14 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             }
         }
 
+        public bool ShowLineNumbers
+        {
+            get
+            {
+                return ApplicationManager.Settings.ShowLineNumbers;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the selection start.
         /// </summary>
@@ -431,7 +439,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             }
             set
             {
-                if (!ApplicationManager.Settings.EnableSyntaxHighlighting)
+                if (!this.IsSyntaxHighlightingEnabled)
                 {
                     return;
                 }
@@ -564,6 +572,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             this.NotifyPropertyChanged(nameof(this.FontSize));
             this.NotifyPropertyChanged(nameof(this.FontFamily));
             this.NotifyPropertyChanged(nameof(this.IsSyntaxHighlightingEnabled));
+            this.NotifyPropertyChanged(nameof(this.ShowLineNumbers));
         }
 
         /// <summary>
