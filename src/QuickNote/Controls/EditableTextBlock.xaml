@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          xmlns:controls1="clr-namespace:SwissTool.Ext.QuickNote.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="300" Foreground="{DynamicResource BlackColorBrush}" Cursor="Arrow" IsReadOnly="True" Focusable="False"
+             d:DesignHeight="20" d:DesignWidth="300" Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" Cursor="Arrow" IsReadOnly="True" Focusable="False"
             MouseDoubleClick="EditableTextBlock_OnMouseDoubleClick" LostFocus="EditableTextBlock_OnLostFocus" 
             KeyDown="EditableTextBlock_OnKeyDown">
     <TextBox.Template>
@@ -20,7 +20,7 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type controls1:CustomTabItem}}}" Value="True">
                                         <DataTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}"></Setter>
+                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}"></Setter>
                                         </DataTrigger.Setters>
                                     </DataTrigger>
                                     <MultiDataTrigger>

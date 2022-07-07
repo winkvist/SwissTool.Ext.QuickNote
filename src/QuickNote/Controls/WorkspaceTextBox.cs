@@ -81,7 +81,7 @@ namespace SwissTool.Ext.QuickNote.Controls
         /// </summary>
         public WorkspaceTextBox()
         {
-            this.TextArea.TextView.LinkTextForegroundBrush = (Brush)this.FindResource("AccentColorBrush");
+            this.TextArea.TextView.LinkTextForegroundBrush = (Brush)this.FindResource("MahApps.Brushes.Accent");
 
             this.TextArea.SelectionChanged += this.TextAreaOnSelectionChanged;
             this.TextArea.Caret.PositionChanged += this.CaretPositionChanged;

@@ -55,8 +55,8 @@
                                    HorizontalScrollBarVisibility="Auto" 
                                    FontFamily="{Binding FontFamily}"
                                    FontSize="{Binding FontSize}"
-                                   Foreground="{DynamicResource BlackColorBrush}"
-                                   Background="{DynamicResource WhiteColorBrush}"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                                   Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                                    SyntaxHighlighting="{Binding SyntaxHighlighting}" KeyDown="TextEditor_OnKeyDown"
                                    Loaded="TextEditor_OnLoaded" 
                                    Document="{Binding Document}"
@@ -445,7 +445,7 @@
             <ComboBox Name="highlightingComboBox" Canvas.Top="2" MinWidth="30" Opacity="0.3" ToolTip="Syntax highlighting preset"
 				SelectedItem="{Binding SyntaxHighlighting}" Focusable="False"
 				ItemsSource="{Binding SyntaxHighlightingDefinitions}" Visibility="{Binding IsSyntaxHighlightingEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      DropDownClosed="HighlightingComboBox_OnDropDownClosed" Style="{DynamicResource MetroComboBox}">
+                      DropDownClosed="HighlightingComboBox_OnDropDownClosed" Style="{DynamicResource MahApps.Styles.ComboBox}">
                     <ComboBox.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard Storyboard="{StaticResource SyntaxHighlightingMouseEnter}" />

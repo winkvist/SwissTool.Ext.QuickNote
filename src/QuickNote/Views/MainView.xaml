@@ -62,7 +62,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TabPanel Name="HeaderPanel" Grid.Row="0" Panel.ZIndex="1" Margin="2,2,4,0" IsItemsHost="True" KeyboardNavigation.TabIndex="1" Background="Transparent" />
-                            <Border Name="Border" Grid.Row="1" Background="{DynamicResource WhiteColorBrush}" 
+                            <Border Name="Border" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
                                 BorderBrush="Gray" BorderThickness="1" CornerRadius="0" 
                                 KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained"
                                 KeyboardNavigation.TabIndex="2">
@@ -89,7 +89,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource BlackColorBrush}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -101,7 +101,7 @@
        
             <ColorAnimationUsingKeyFrames Storyboard.TargetName="SearchTextBox" Duration="0:0:0.3"
                       Storyboard.TargetProperty="Background.Color" AutoReverse="True">
-                <DiscreteColorKeyFrame KeyTime="0:0:0" Value="{DynamicResource WhiteColor}" />
+                <DiscreteColorKeyFrame KeyTime="0:0:0" Value="{DynamicResource MahApps.Colors.ThemeBackground}" />
                 <LinearColorKeyFrame KeyTime="0:0:0.1" Value="#ee4037" />
                 <DiscreteColorKeyFrame KeyTime="0:0:0.3" Value="#ee4037" />
             </ColorAnimationUsingKeyFrames>
@@ -126,7 +126,7 @@
                     <Image Source="../Images/Window-Close.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="12" Height="12" Focusable="False" />
                 </Button>
                 <controls1:EditableTextBlock Margin="2,1,0,0" Text="{Binding Path=Label, UpdateSourceTrigger=LostFocus}" Name="LabelTextBox" ToolTip="{Binding Filename}" />
-                <TextBlock Margin="3,0,3,0" Visibility="{Binding HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{DynamicResource BlackColorBrush}">*</TextBlock>
+                <TextBlock Margin="3,0,3,0" Visibility="{Binding HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">*</TextBlock>
             </DockPanel>
         </DataTemplate>
 
@@ -165,7 +165,7 @@
     </Window.Resources>
     <DockPanel Name="MainPanel" Margin="0">
         <!--<DockPanel Name="MainPanel" Margin="0,-30,0,0">-->
-        <Border Name="SearchBorder" DockPanel.Dock="Bottom" Background="{DynamicResource WhiteColorBrush}" Margin="0,4,0,0" BorderThickness="1" CornerRadius="0" HorizontalAlignment="Left" KeyDown="UIElement_OnKeyDown"
+        <Border Name="SearchBorder" DockPanel.Dock="Bottom" Background="{DynamicResource MahApps.Brushes.ThemeBackground}" Margin="0,4,0,0" BorderThickness="1" CornerRadius="0" HorizontalAlignment="Left" KeyDown="UIElement_OnKeyDown"
                     IsVisibleChanged="UIElement_OnIsVisibleChanged" Visibility="Collapsed" BorderBrush="Gray"
                     LostFocus="UIElement_OnLostFocus">
                 
@@ -176,8 +176,8 @@
                             <TextBox.Style>
                                 <Style TargetType="{x:Type TextBox}">
                                     <Style.Setters>
-                                        <Setter Property="Background" Value="{DynamicResource WhiteColorBrush}"></Setter>
-                                        <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}"></Setter>
+                                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}"></Setter>
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}"></Setter>
                                     </Style.Setters>
                                 </Style>
                             </TextBox.Style>
@@ -216,9 +216,9 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type TabItem}">
-                                <Grid Background="{DynamicResource WhiteColorBrush}">
+                                <Grid Background="{DynamicResource MahApps.Brushes.ThemeBackground}">
                                     
-                                    <Border Name="Border" Margin="-2,0,0,0" Background="{DynamicResource WhiteColorBrush}" 
+                                    <Border Name="Border" Margin="-2,0,0,0" Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
                                             BorderBrush="Gray" BorderThickness="1,1,1,0" CornerRadius="0">
                                         <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                           ContentSource="Header" Margin="12,2,12,2" RecognizesAccessKey="True" />
@@ -228,8 +228,8 @@
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter Property="Panel.ZIndex" Value="100" />
-                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentColorBrush}" />
-                                        <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}" />
+                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
