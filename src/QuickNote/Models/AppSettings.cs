@@ -28,8 +28,8 @@ namespace SwissTool.Ext.QuickNote.Models
             this.WorkspaceStateSaveInterval = 5;
             this.FontFamily = "Consolas";
             this.FontSize = 12;
-            this.EnableSyntaxHighlighting = false;
-            this.ShowLineNumbers = false;
+            this.EnableSyntaxHighlighting = true;
+            this.ShowLineNumbers = true;
         }
 
         /// <summary>
