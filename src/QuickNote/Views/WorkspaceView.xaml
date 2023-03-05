@@ -25,6 +25,7 @@
         <BitmapImage x:Key="IconPrint" UriSource="../Resources/Icons/Light/24x24/print.png" />
         <BitmapImage x:Key="IconEdit" UriSource="../Resources/Icons/Light/24x24/edit_file.png" />
         <BitmapImage x:Key="IconSearch" UriSource="../Resources/Icons/Light/24x24/search.png" />
+        <BitmapImage x:Key="IconReplace" UriSource="../Resources/Icons/Light/24x24/replace.png" />
         <BitmapImage x:Key="IconCut" UriSource="../Resources/Icons/Light/24x24/cut.png" />
         <BitmapImage x:Key="IconCopy" UriSource="../Resources/Icons/Light/24x24/copy.png" />
         <BitmapImage x:Key="IconPaste" UriSource="../Resources/Icons/Light/24x24/paste.png" />
@@ -39,6 +40,7 @@
         <BitmapImage x:Key="IconPrintDark" UriSource="../Resources/Icons/Dark/24x24/print.png" />
         <BitmapImage x:Key="IconEditDark" UriSource="../Resources/Icons/Dark/24x24/edit_file.png" />
         <BitmapImage x:Key="IconSearchDark" UriSource="../Resources/Icons/Dark/24x24/search.png" />
+        <BitmapImage x:Key="IconReplaceDark" UriSource="../Resources/Icons/Dark/24x24/replace.png" />
         <BitmapImage x:Key="IconCutDark" UriSource="../Resources/Icons/Dark/24x24/cut.png" />
         <BitmapImage x:Key="IconCopyDark" UriSource="../Resources/Icons/Dark/24x24/copy.png" />
         <BitmapImage x:Key="IconPasteDark" UriSource="../Resources/Icons/Dark/24x24/paste.png" />
@@ -325,6 +327,22 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Source={x:Static managers:WindowManager.CurrentTheme}, Path=UiHint}" Value="Dark">
                                                     <Setter Property="Source" Value="{StaticResource IconSearchDark}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Pattern replace" Command="{Binding Path=ShowPatternReplaceWindowCommand}">
+                            <MenuItem.Icon>
+                                <Image Width="20" Height="20">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="{StaticResource IconReplace}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Source={x:Static managers:WindowManager.CurrentTheme}, Path=UiHint}" Value="Dark">
+                                                    <Setter Property="Source" Value="{StaticResource IconReplaceDark}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

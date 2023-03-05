@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using SwissTool.Framework.UI.Managers;
+
 namespace SwissTool.Ext.QuickNote.ViewModels
 {
     using System;
@@ -101,6 +103,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             this.AddNewWorkspaceCommand = new RelayCommand(o => this.MainViewModel.AddWorkspace());
             this.HideMainWindowCommand = new RelayCommand(o => this.HideMainWindow());
             this.ShowSettingsWindowCommand = new RelayCommand(o => this.ShowSettingsWindow());
+            this.ShowPatternReplaceWindowCommand = new RelayCommand(o => this.ShowPatternReplaceWindow());
             this.SaveStateCommand = new RelayCommand(o => this.SaveState(), o => this.HasChanges);
             this.PrintCommand = new RelayCommand(o => this.Print());
 
@@ -548,6 +551,12 @@ namespace SwissTool.Ext.QuickNote.ViewModels
         public ICommand ShowSettingsWindowCommand { get; private set; }
 
         /// <summary>
+        /// Gets the show pattern replace window command.
+        /// </summary>
+        /// <value>The show pattern replace command.</value>
+        public ICommand ShowPatternReplaceWindowCommand { get; private set; }
+
+        /// <summary>
         /// Gets or sets the print action.
         /// </summary>
         /// <value>
@@ -834,6 +843,24 @@ namespace SwissTool.Ext.QuickNote.ViewModels
             view.DataContext = viewModel;
             view.ShowDialog();
             viewModel.RequestApplySettings -= this.MainViewModel.ApplySettings;
+            viewModel.RequestClose -= view.Close;
+        }
+
+        /// <summary>
+        /// Shows the pattern replace window.
+        /// </summary>
+        public void ShowPatternReplaceWindow()
+        {
+            var view = new Views.PatternReplaceView();
+            var viewModel = new PatternReplaceViewModel();
+            viewModel.SourceText = this.Content;
+            viewModel.RequestPatternReplace += () =>
+            {
+                this.Document.Text = viewModel.TargetText;
+            };
+            viewModel.RequestClose += view.Close;
+            view.DataContext = viewModel;
+            view.ShowDialog();
             viewModel.RequestClose -= view.Close;
         }
 
