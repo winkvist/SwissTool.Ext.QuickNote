@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -281,7 +282,8 @@ namespace SwissTool.Ext.QuickNote.ViewModels
                     this.IsCompileProgressVisible = false;
                     state.OnError(error);
                 },
-                progress => this.backgroundWorker.ReportProgress(progress)
+                progress => this.backgroundWorker.ReportProgress(progress),
+                maxLines: state.MaxLines
             );
         }
 
@@ -297,7 +299,7 @@ namespace SwissTool.Ext.QuickNote.ViewModels
                 var parameterPlaceholders = Enumerable.Range(0, parameterPlaceholderCount).Select(e => "{" + e + "}").ToArray();
 
                 var lines = this.SourceText.Split(new[] { Regex.Unescape(this.RowSeparator) }, resultCount, StringSplitOptions.RemoveEmptyEntries);
-
+                    
                 var stringBuilder = new StringBuilder();
 
                 for (var i = 0; i < lines.Length; i++)
